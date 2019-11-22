@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAIN</title>
+    <style>
+        body{
+    background-image: linear-gradient(to right , #cb2d3e , #ef473a);
+    }
+        
+    .searchBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%,50%);
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    }
+    
+    .searchBox:hover > .searchInput {
+    width: 180px;
+    padding: 0 6px;
+}
+
+    .searchBox:hover > .searchButton {
+      background: white;
+      color : #2f3640;
+    }
+
+    .searchButton {
+        color: white;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+    }
+
+    .searchInput {
+        border:none;
+        background: none;
+        outline:none;
+        float:left;
+        padding: 0;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+
+    }
+
+    @media screen and (max-width: 620px) {
+    .searchBox:hover > .searchInput {
+        width: 150px;
+        padding: 0 6px;
+    }
+    }
+    </style>
+</head>
+<body>
+    <form action="show" method="get">
+        <div class="searchBox">
+            <input class="searchInput" type="text" name="start" placeholder="시작지점">
+            <input class="searchInput" type="text" name="end" placeholder="도착지점">
+            <input class="searchInput" type="time" value="00:00" name="hour" placeholder="시간">
+            <button class="searchButton" type="submit" href="#">
+            <!-- <button class="searchButton" type="submit"> -->
+
+                <i class="material-icons">검색</i>     
+            </button>
+        </div>
+    </form>
+        
+
+</body>
+</html>
