@@ -58,8 +58,10 @@ def getRoute(startStation, endStation, hour):
     endStation['x'], endStation['y'] = convertWGS2WCONG(endStation['x'], endStation['y'])
 
     url = "https://map.kakao.com/route/pubtrans.json?inputCoordSystem=WCONGNAMUL&outputCoordSystem=WCONGNAMUL&service=map.daum.net&sX="+startStation['x']+"&sY="+startStation['y']+"&sName="+start+"&sid="+startStation['id']+"&eX="+endStation['x']+"&eY="+endStation['y']+"&eName="+end+"&eid="+endStation['id']
-    page = urllib.request.urlopen(url, context=context).read()
-    data = json.loads(page)
+    page = urllib.request.urlopen(url, context=context)
+    if page == b'':
+        return []
+    data = json.loads(page.read())
     busdata = []
 
     count = 0

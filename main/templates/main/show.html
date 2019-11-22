@@ -80,11 +80,19 @@
             </span>
             {% if j.5 %}
             <span class = "sideinfo">
-                <span>
-                    {{ j.5 }}
+                <span style="color: black;">
+                    {{ j.5 }}번 버스
                 </span>
               <span>
-                  {{ j.6 }}%
+                {% if j.6 < 20 %}
+                  <strong style="color: blue;">{{ j.6 }}%</strong>
+                {% elif j.6 < 30 %}
+                  <strong style="color: skyblue;">{{ j.6 }}%</strong>
+                {% elif j.6 < 50 %}
+                  <strong style="color: orange;">{{ j.6 }}%</strong>
+                {% else %}
+                <strong style="color: red;">{{ j.6 }}%</strong>
+                {% endif %}
               </span>
             </span>
             {% endif %}
