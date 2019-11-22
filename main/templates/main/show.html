@@ -46,40 +46,52 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+        {% for i in route %}
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapseTwo">
             <span>
-              총 이동시간
+              {{ i.0 }}
             </span>
             <span>
-              분
+              {{ i.2 }}
             </span>
             <span>
               요금
             </span>
             <span>
-              1150원
+              {{ i.1 }}
             </span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo{{ forloop.counter0 }}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+            {% for j in i.3 %}
             <div class ="imformation">
-                현재 스탭 정보
+                {{ j.2 }}
             </div>
             <div class ="sideinfo">
                 <span>
-                  이동거리
+                  {{ j.1 }}
                 </span>
                 <span>
-                  이동 시간
+                    {{ j.4 }}
                 </span>
             </div>
+            {% if j.5 %}
             <div class = "sideinfo">
-              버스번호
+                <span>
+                    {{ j.5 }}
+                </span>
+              <span>
+                  {{ j.6 }}%
+              </span>
             </div>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
       </li>
+        
+        {% endfor %}
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
       <!-- Sidebar Toggler (Sidebar) -->
