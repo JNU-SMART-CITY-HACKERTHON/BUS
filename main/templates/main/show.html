@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dd957b22980535947df249d89b3d62f1"></script>
 
 </head>
 
@@ -46,40 +47,54 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+        {% for i in route %}
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapseTwo">
             <span>
-              총 이동시간
+              {{ i.0 }}
             </span>
             <span>
-              분
+              {{ i.2 }}
             </span>
             <span>
               요금
             </span>
             <span>
-              1150원
+              {{ i.1 }}
             </span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo{{ forloop.counter0 }}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <div class ="imformation">
-                현재 스탭 정보
-            </div>
-            <div class ="sideinfo">
+            {% for j in i.3 %}
+            <div>
+            <span class ="imformation">
+                {{ j.2 }}
+            </span>
+            <span class ="sideinfo">
                 <span>
-                  이동거리
+                  {{ j.1 }}
                 </span>
                 <span>
-                  이동 시간
+                    {{ j.4 }}
                 </span>
-            </div>
-            <div class = "sideinfo">
-              버스번호
-            </div>
+            </span>
+            {% if j.5 %}
+            <span class = "sideinfo">
+                <span>
+                    {{ j.5 }}
+                </span>
+              <span>
+                  {{ j.6 }}%
+              </span>
+            </span>
+            {% endif %}
+          </div>
+            {% endfor %}
           </div>
         </div>
       </li>
+        
+        {% endfor %}
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
       <!-- Sidebar Toggler (Sidebar) -->
@@ -91,29 +106,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
+    
     <!-- End of Content Wrapper -->
 
   </div>
@@ -152,7 +145,18 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+  <script>
 
+    function show(x, y) {
+      var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+      var options = { //지도를 생성할 때 필요한 기본 옵션
+        center: new kakao.maps.LatLng(x, y), //지도의 중심좌표.
+        level: 3 //지도의 레벨(확대, 축소 정도)
+      };
+      
+      var map = new kakao.maps.Map(container, options); 
+    }
+      </script>
 </body>
 
 </html>
